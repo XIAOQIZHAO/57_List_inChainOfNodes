@@ -19,10 +19,6 @@ public class Node {
     public Node( Object cargoReference, Node referenceToNextNode) {
 	this.cargoReference = cargoReference;
 	this.referenceToNextNode = referenceToNextNode;
-        /* For incremental development with the skeleton's UserOfNode,
-           // postpone writing this constructor until after the accessors.
-           // Then remove this comment, of course.
-          */
     }
 
     /**
@@ -49,5 +45,9 @@ public class Node {
 
     public void setReferenceToNextNode( Node referenceToNextNode) {
 	this.referenceToNextNode = referenceToNextNode;
+    }
+
+    public Object getCargoReference() {
+	return cargoReference;
     }
 }
