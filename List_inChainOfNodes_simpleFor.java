@@ -62,7 +62,8 @@ public class List_inChainOfNodes_simpleFor{
 		return null;
 	}
 
-	public Node set(int index, Node newNode){
-		Node saveForReturn = get(index);
+	public Object set(int index, Node newNode){
+		Object saveForReturn = get(index);
+		
 	}
 }
