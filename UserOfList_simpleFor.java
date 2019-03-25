@@ -25,5 +25,16 @@ public class UserOfList_simpleFor {
         }
         System.out.println( "populated list: " + list
                           + System.lineSeparator());
+
+	System.out.println( "get element 0: " + list.get(0)
+                          + System.lineSeparator());
+	System.out.println( "get element 2: " + list.get(2)
+                          + System.lineSeparator());
+	System.out.println( "get element 3: " + list.get(3)
+                          + System.lineSeparator());
+	System.out.println( "get element 10: " + list.get(10)
+                          + System.lineSeparator());
+
+	
     }
 }

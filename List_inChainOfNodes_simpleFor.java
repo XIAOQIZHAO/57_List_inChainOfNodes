@@ -48,4 +48,21 @@ public class List_inChainOfNodes_simpleFor{
 	 headReference = head;
 	 return true;
      }
+
+	public Object get (int index){
+		int counter = 0;
+		for (Node node = headReference;
+	     node != null;
+	     node = node.getReferenceToNextNode()){
+			if (counter == index)
+				return node.getCargoReference();
+			else
+				counter++;
+		}
+		return null;
+	}
+
+	public Node set(int index, Node newNode){
+		Node saveForReturn = get(index);
+	}
 }
