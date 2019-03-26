@@ -35,16 +35,32 @@ public class UserOfList_simpleFor {
 	System.out.println( "get element 10: " + list.get(10)
                           + System.lineSeparator());
 
+	list.set(0, "KLDSJFL");
+	System.out.println( "set element 0 to KLDSJFL: " + list
+                          + System.lineSeparator());
 	list.set(2, "KLDSJFL");
 	System.out.println( "set element 2 to KLDSJFL: " + list
                           + System.lineSeparator());
-
-	list.add(1, "ADDED TO ELEMENT 1");
-	System.out.println( "add to element 1: " + list
+	list.set(3, "KLDSJFL");
+	System.out.println( "set element 3 to KLDSJFL: " + list
                           + System.lineSeparator());
 
+	list.add(0, "ADDED TO ELEMENT0");
+	System.out.println( "add to element0: " + list
+                          + System.lineSeparator());
+	list.add(5, "ADDED TO ELEMENT5");
+	System.out.println( "add to element5: " + list
+                          + System.lineSeparator());
+	
+
+	list.remove(0);
+	System.out.println( "remove element0: " + list
+                          + System.lineSeparator());
 	list.remove(1);
-	System.out.println( "remove element 1: " + list
+	System.out.println( "remove element1: " + list
+                          + System.lineSeparator());
+	list.remove(3);
+	System.out.println( "remove element3: " + list
                           + System.lineSeparator());
     }
 }

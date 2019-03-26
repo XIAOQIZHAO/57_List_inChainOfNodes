@@ -49,7 +49,7 @@ public class List_inChainOfNodes_simpleFor{
 	 return true;
      }
 
-    /*
+    
     private Node getNode (int index){
 	int counter = 0;
 	for (Node node = headReference;
@@ -62,13 +62,47 @@ public class List_inChainOfNodes_simpleFor{
 	}
 	return null;
     }
+    
 
     public Object get (int index){
-	if (getNode(index) != null)
-	    return getNode(index).getCargoReference();
-	return null;
+	if (getNode(index) == null)
+	    return null;
+	return getNode(index).getCargoReference();
     }
 
+    public Object set (int index, Object cargo){
+	Node node = new Node(cargo, getNode(index).getReferenceToNextNode());
+	if (index == 0)
+	    return getNode(0).setCargoReference(0, cargo);
+	else {
+	    getNode(index - 1).setReferenceToNextNode(node);
+	    return node.setCargoReference(index, cargo);
+	}
+    }
+
+    public boolean add (int index, Object cargo){
+	if (index == 0)
+	    return addAsHead(cargo);
+	else {
+	    Node node = new Node(cargo, getNode(index));
+	    if (getNode(index) == null)
+		node.setReferenceToNextNode(null);
+	    getNode(index - 1).setReferenceToNextNode(node);
+	    return true;
+	}
+    }
+
+    public Object remove(int index){
+        if (index == 0)
+	    headReference = getNode(index).getReferenceToNextNode();
+	else if (index == size() - 1)
+	    getNode(index - 1).setReferenceToNextNode(null);
+	else
+	    getNode(index - 1).setReferenceToNextNode(getNode(index + 1));
+	return getNode(index);
+    }
+
+    /*
     private Node setNode(int index, Node newNode){
 	Node saveForReturn = getNode(index);
 	newNode.setReferenceToNextNode(saveForReturn.getReferenceToNextNode());
@@ -118,31 +152,5 @@ public class List_inChainOfNodes_simpleFor{
     }
 
 */
-
-    
-    public Object get(int index) {
-	int counter = 0;
-	for (Node node = headReference;
-	     node != null;
-	     node = node.getReferenceToNextNode(), counter++){
-		if (counter == index) 
-			return node.getCargoReference();
-		counter++;
-	    }
-	return null;
-    }
-
-    public Object set(int index, Object cargo){
-	int counter = 0;
-	Object oldCargo = get(index);
-	for (Node node = headReference;
-	     node != null;
-	     node = node.getReferenceToNextNode(), counter++){
-		if (counter == index) 
-			node.setCargoReference(index, cargo);
-		counter++;
-	    }
-	return oldCargo;
-    }
 
 }
