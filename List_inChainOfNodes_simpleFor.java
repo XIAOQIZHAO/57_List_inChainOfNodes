@@ -49,8 +49,8 @@ public class List_inChainOfNodes_simpleFor{
 	 return true;
      }
 
-    
-    public Node getNode (int index){
+    /*
+    private Node getNode (int index){
 	int counter = 0;
 	for (Node node = headReference;
 	     node != null;
@@ -69,7 +69,7 @@ public class List_inChainOfNodes_simpleFor{
 	return null;
     }
 
-    public Node setNode(int index, Node newNode){
+    private Node setNode(int index, Node newNode){
 	Node saveForReturn = getNode(index);
 	newNode.setReferenceToNextNode(saveForReturn.getReferenceToNextNode());
 	for (Node node = headReference;
@@ -105,6 +105,7 @@ public class List_inChainOfNodes_simpleFor{
 	return false;
     }
 
+
     public Object remove(int index){
 	Node removedNode = getNode(index);
 	for (Node node = headReference;
@@ -115,4 +116,33 @@ public class List_inChainOfNodes_simpleFor{
 	}
 	return removedNode.getCargoReference();
     }
+
+*/
+
+    
+    public Object get(int index) {
+	int counter = 0;
+	for (Node node = headReference;
+	     node != null;
+	     node = node.getReferenceToNextNode(), counter++){
+		if (counter == index) 
+			return node.getCargoReference();
+		counter++;
+	    }
+	return null;
+    }
+
+    public Object set(int index, Object cargo){
+	int counter = 0;
+	Object oldCargo = get(index);
+	for (Node node = headReference;
+	     node != null;
+	     node = node.getReferenceToNextNode(), counter++){
+		if (counter == index) 
+			node.setCargoReference(index, cargo);
+		counter++;
+	    }
+	return oldCargo;
+    }
+
 }
