@@ -49,21 +49,70 @@ public class List_inChainOfNodes_simpleFor{
 	 return true;
      }
 
-	public Object get (int index){
-		int counter = 0;
-		for (Node node = headReference;
+    
+    public Node getNode (int index){
+	int counter = 0;
+	for (Node node = headReference;
 	     node != null;
 	     node = node.getReferenceToNextNode()){
-			if (counter == index)
-				return node.getCargoReference();
-			else
-				counter++;
-		}
-		return null;
+	    if (counter == index)
+		return node;
+	    else
+		counter++;
 	}
+	return null;
+    }
 
-	public Object set(int index, Node newNode){
-		Object saveForReturn = get(index);
-		
+    public Object get (int index){
+	if (getNode(index) != null)
+	    return getNode(index).getCargoReference();
+	return null;
+    }
+
+    public Node setNode(int index, Node newNode){
+	Node saveForReturn = getNode(index);
+	newNode.setReferenceToNextNode(saveForReturn.getReferenceToNextNode());
+	for (Node node = headReference;
+	     node != null;
+	     node = node.getReferenceToNextNode()){
+	    if (node.getReferenceToNextNode() == saveForReturn)
+		node.setReferenceToNextNode(newNode);
 	}
+	return saveForReturn;
+    }
+
+    public Object set(int index, Object cargo){
+	if (getNode(index) != null){
+	    Node node = new Node(cargo, getNode(index).getReferenceToNextNode());
+	    return setNode(index, node);
+	}
+	else
+	    return null;
+    }
+
+    public Node add(int index, Node newNode){
+	Node old = getNode(index);
+	newNode.setReferenceToNextNode(old.getReferenceToNextNode());
+	old.setReferenceToNextNode(newNode);
+	return newNode;
+    }
+
+    public boolean add(int index, Object cargo){
+	if (getNode(index) != null){
+	    add(index, new Node(cargo, getNode(index).getReferenceToNextNode()));
+	    return true;
+	}
+	return false;
+    }
+
+    public Object remove(int index){
+	Node removedNode = getNode(index);
+	for (Node node = headReference;
+	     node != null;
+	     node = node.getReferenceToNextNode()){
+	    if (node.getReferenceToNextNode() == removedNode)
+		node.setReferenceToNextNode(removedNode.getReferenceToNextNode());
+	}
+	return removedNode.getCargoReference();
+    }
 }

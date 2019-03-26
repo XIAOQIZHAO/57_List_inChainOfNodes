@@ -19,10 +19,17 @@ public class List_inChainOfNodes_recursion{
 	if (headReference == null)
 	    return 0;
 	else {
-	    headReference = headReference.getReferenceToNextNode();
-	    return 1 + size();
+	    return size(headReference);
 	}
-	
+    }
+
+    public int size(Node startingAt) {
+	Node nextNode = startingAt.getReferenceToNextNode();
+	if (nextNode != null)
+	    return 1 + size(nextNode);
+	else
+	    return 1;
+	    
     }
 
     
@@ -32,14 +39,16 @@ public class List_inChainOfNodes_recursion{
            # elements [element0,element1,element2,] 
       */
     public String toString() {
-	String output = "elements [";
-	if (headReference == null)
-	    return output += "]";
-	else {
-	    headReference = headReference.getReferenceToNextNode();
-	    return output + headReference.toString();
-	}
+	return "[" + toString(headReference) + "]";
     }
+
+    public String toString(Node startingAt) {
+	if (startingAt == null)
+	    return "";
+	else
+	    return startingAt.getCargoReference() + "," + toString(startingAt.getReferenceToNextNode());
+    }
+	
     
     
     /**
