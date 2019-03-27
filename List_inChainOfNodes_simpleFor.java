@@ -51,16 +51,12 @@ public class List_inChainOfNodes_simpleFor{
 
     
     private Node getNode (int index){
-	int counter = 0;
-	for (Node node = headReference;
-	     node != null;
-	     node = node.getReferenceToNextNode()){
-	    if (counter == index)
-		return node;
-	    else
-		counter++;
-	}
-	return null;
+	int counter;
+	Node node;
+	for (node = headReference, counter = 0;
+	     node != null && counter < index;
+	     node = node.getReferenceToNextNode(), counter++){}
+	return node;
     }
     
 
@@ -71,22 +67,32 @@ public class List_inChainOfNodes_simpleFor{
     }
 
     public Object set (int index, Object cargo){
-	Node node = new Node(cargo, getNode(index).getReferenceToNextNode());
+	Node oldNode = getNode(index);
+	Node newNode = new Node(cargo, oldNode.getReferenceToNextNode());
 	if (index == 0)
-	    return getNode(0).setCargoReference(0, cargo);
-	else {
-	    getNode(index - 1).setReferenceToNextNode(node);
-	    return node.setCargoReference(index, cargo);
-	}
+	    headReference = newNode;
+	else
+	    getNode(index - 1).setReferenceToNextNode(newNode);
+	return oldNode.getCargoReference();
+	
+	// Object oldCargo = get(index);
+	// getNode(index).setCargoReference(index, cargo);
+	// return oldCargo;
     }
 
     public boolean add (int index, Object cargo){
 	if (index == 0)
 	    return addAsHead(cargo);
 	else {
+	    // Node addedNode = new Node(null, null);
+	    // getNode(size() - 1).setReferenceToNextNode(addedNode);
+	    // for (int idx = index;
+	    //      idx < size() + 1;
+	    // 	 idx++){
+	    // 	set(idx + 1, set(idx, getNode(index).getCargoReference()));
+	    // }
+	    
 	    Node node = new Node(cargo, getNode(index));
-	    if (getNode(index) == null)
-		node.setReferenceToNextNode(null);
 	    getNode(index - 1).setReferenceToNextNode(node);
 	    return true;
 	}

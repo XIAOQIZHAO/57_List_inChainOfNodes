@@ -51,9 +51,9 @@ public class Node {
 	return cargoReference;
     }
 
-    public Object setCargoReference(int index, Object cargo) {
-	Object old = cargoReference;
-	cargoReference = cargo;
-	return old;
-    }
+    // public Object setCargoReference(int index, Object cargo) {
+    // 	Object old = cargoReference;
+    // 	cargoReference = cargo;
+    // 	return old;
+    // }
 }
