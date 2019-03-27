@@ -84,14 +84,6 @@ public class List_inChainOfNodes_simpleFor{
 	if (index == 0)
 	    return addAsHead(cargo);
 	else {
-	    // Node addedNode = new Node(null, null);
-	    // getNode(size() - 1).setReferenceToNextNode(addedNode);
-	    // for (int idx = index;
-	    //      idx < size() + 1;
-	    // 	 idx++){
-	    // 	set(idx + 1, set(idx, getNode(index).getCargoReference()));
-	    // }
-	    
 	    Node node = new Node(cargo, getNode(index));
 	    getNode(index - 1).setReferenceToNextNode(node);
 	    return true;
@@ -99,13 +91,14 @@ public class List_inChainOfNodes_simpleFor{
     }
 
     public Object remove(int index){
+	Node saveForReturn = getNode(index);
         if (index == 0)
 	    headReference = getNode(index).getReferenceToNextNode();
 	else if (index == size() - 1)
 	    getNode(index - 1).setReferenceToNextNode(null);
 	else
 	    getNode(index - 1).setReferenceToNextNode(getNode(index + 1));
-	return getNode(index);
+	return saveForReturn.getCargoReference();
     }
 
     /*

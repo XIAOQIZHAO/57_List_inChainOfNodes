@@ -56,14 +56,14 @@ public class UserOfList_simpleFor {
                           + System.lineSeparator());
 	
 
-	list.remove(0);
+	System.out.println( list.remove(0));
 	System.out.println( "remove element0: " + list
                           + System.lineSeparator());
-	list.remove(1);
+	System.out.println( list.remove(1));
 	System.out.println( "remove element1: " + list
                           + System.lineSeparator());
-	list.remove(3);
-	System.out.println( "remove element3: " + list
+	System.out.println( list.remove(4));
+	System.out.println( "remove element4: " + list
                           + System.lineSeparator());
     }
 }
