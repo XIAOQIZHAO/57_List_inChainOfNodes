@@ -32,8 +32,9 @@ public class UserOfList_simpleFor {
                           + System.lineSeparator());
 	System.out.println( "get element 3: " + list.get(3)
                           + System.lineSeparator());
-	System.out.println( "get element 10: " + list.get(10)
-                          + System.lineSeparator());
+	// System.out.println( "get element 10: " + list.get(10)
+        //                   + System.lineSeparator());
+	// no need to test invalid input
 
 	System.out.println( list.set(0, "KLDSJFL"));
 	System.out.println( "set element 0 to KLDSJFL: " + list

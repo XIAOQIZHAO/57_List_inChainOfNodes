@@ -8,9 +8,10 @@ public class List_inChainOfNodes_simpleFor{
     /**
       Construct an empty list
      */
-    public List_inChainOfNodes_simpleFor(){
-	headReference = null;
-    }
+    // public List_inChainOfNodes_simpleFor(){
+    // 	headReference = null;
+    // }
+    // default constructor would do it;
 
     /**
       @return the number of elements in this list
@@ -44,8 +45,7 @@ public class List_inChainOfNodes_simpleFor{
       @return true, in keeping with conventions yet to be discussed
      */
      public boolean addAsHead( Object val) {
-	 Node head = new Node(val, headReference);
-	 headReference = head;
+	 headReference = new Node(val, headReference);
 	 return true;
      }
 
@@ -61,19 +61,21 @@ public class List_inChainOfNodes_simpleFor{
     
 
     public Object get (int index){
-	if (getNode(index) == null)
-	    return null;
+	// if (getNode(index) == null)
+	//     return null;
 	return getNode(index).getCargoReference();
     }
 
     public Object set (int index, Object cargo){
-	Node oldNode = getNode(index);
-	Node newNode = new Node(cargo, oldNode.getReferenceToNextNode());
-	if (index == 0)
-	    headReference = newNode;
-	else
-	    getNode(index - 1).setReferenceToNextNode(newNode);
-	return oldNode.getCargoReference();
+	return getNode(index).setCargoReference(cargo);
+	// Node oldNode = getNode(index);
+	// Node newNode = new Node(cargo, oldNode.getReferenceToNextNode());
+	// if (index == 0)
+	//     headReference = newNode;
+	// else
+	//     getNode(index - 1).setReferenceToNextNode(newNode);
+	// return oldNode.getCargoReference();
+
 	
 	// Object oldCargo = get(index);
 	// getNode(index).setCargoReference(index, cargo);
@@ -87,18 +89,40 @@ public class List_inChainOfNodes_simpleFor{
 	    Node node = new Node(cargo, getNode(index));
 	    getNode(index - 1).setReferenceToNextNode(node);
 	    return true;
+
+	    // alternatively
+	    // Node newNode = new Node(cargo);
+	    // Node next =
+	    //     getNode(index - 1).setReferenceToNextNode(newNode);
+	    // // returns the original Node reference
+	    // newNode.setReferenceToNextNode(next);
+	    // return true;
 	}
     }
 
     public Object remove(int index){
-	Node saveForReturn = getNode(index);
-        if (index == 0)
-	    headReference = getNode(index).getReferenceToNextNode();
-	else if (index == size() - 1)
-	    getNode(index - 1).setReferenceToNextNode(null);
-	else
-	    getNode(index - 1).setReferenceToNextNode(getNode(index + 1));
-	return saveForReturn.getCargoReference();
+	Object saveForReturn;
+        if( index == 0) {
+            saveForReturn = headReference.getCargoReference();
+            headReference = headReference.getReferenceToNextNode();
+        }
+        else {
+            Node before = getNode( index -1);
+            Node ax = before.getReferenceToNextNode();
+            saveForReturn = ax.getCargoReference();
+            before.setReferenceToNextNode( ax.getReferenceToNextNode());
+        }
+        return saveForReturn;
+	
+	
+	// Object saveForReturn = getNode(index).getCargoReference();
+        // if (index == 0)
+	//     headReference = getNode(index).getReferenceToNextNode();
+	// else if (index == size() - 1)
+	//     getNode(index - 1).setReferenceToNextNode(null);
+	// else
+	//     getNode(index - 1).setReferenceToNextNode(getNode(index + 1));
+	// return saveForReturn;
     }
 
     /*
